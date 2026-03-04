@@ -135,7 +135,7 @@ const projects = [
     year: '2025',
     name: 'GRINDSET',
     description: 'Aplicativo de desenvolvimento pessoal gamificado que transforma rotina em progressão. Combine metas acadêmicas e pessoais, registre hábitos diários e acumule XP a cada conquista. O sistema de recompensas e rankings mantém a motivação alta e torna o autodesenvolvimento tão envolvente quanto um jogo.',
-    techs: ['Vue.js', 'Spring Boot', 'PostgreSQL'],
+    techs: ['React', 'PostgreSQL'],
     category: 'Web App',
     highlight: false,
     images: [
