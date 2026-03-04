@@ -3,11 +3,11 @@
     <div class="footer-inner">
       <span class="footer-copy mono">
         &copy; {{ year }}
-        <span class="accent">Matheus Pereira</span>
+        <span class="accent">Matheus Guilherme</span>
 </span>
       <div class="footer-links">
-        <a href="https://github.com/" target="_blank" rel="noopener" class="mono">GitHub</a>
-        <a href="https://linkedin.com/in/" target="_blank" rel="noopener" class="mono">LinkedIn</a>
+        <a href="https://github.com/theuzao" target="_blank" rel="noopener" class="mono">GitHub</a>
+        <a href="https://linkedin.com/in/theuzao" target="_blank" rel="noopener" class="mono">LinkedIn</a>
       </div>
     </div>
   </footer>

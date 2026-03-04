@@ -6,7 +6,7 @@
       </RouterLink>
 
       <div class="nav-links" :class="{ open: menuOpen }">
-        <RouterLink to="/" @click="menuOpen = false">Sobre Mim</RouterLink>
+        <RouterLink to="/sobre" @click="menuOpen = false">Sobre Mim</RouterLink>
         <RouterLink to="/projetos" @click="menuOpen = false">Projetos</RouterLink>
         <RouterLink to="/experiencias" @click="menuOpen = false">Experiências</RouterLink>
         <RouterLink to="/contato" class="nav-cta" @click="menuOpen = false">

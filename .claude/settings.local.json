@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "WebSearch",
+      "WebFetch(domain:vemprapuc.pucminas.br)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

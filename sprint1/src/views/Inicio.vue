@@ -6,23 +6,21 @@
 
         <div class="hero-left">
           <h1 class="hero-title">
-            Matheus <span class="accent">Pereira</span>
+            Matheus <span class="accent">Guilherme</span>
           </h1>
 
           <p class="hero-subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Engenheiro de Software em formação pela PUC Minas.
           </p>
 
           <div class="hero-btns">
             <RouterLink to="/projetos" class="btn-primary mono">Ver Projetos ↓</RouterLink>
-            <a href="#" class="btn-secondary mono">Download CV ↗</a>
+            <!-- <a href="#" class="btn-secondary mono">Download CV ↗</a> -->
           </div>
         </div>
 
         <div class="hero-right">
-          <div class="avatar-placeholder">
-            <span class="avatar-icon">🖼️</span>
-          </div>
+          <img src="@/assets/styles/profile.jpg" alt="Matheus Guilherme" class="avatar-img" />
         </div>
 
       </div>
@@ -33,20 +31,20 @@
         <div class="about-lang">
           <span class="lang-tag mono">🇧🇷 Português</span>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Estudante de Engenharia de Software na PUC Minas com experiência em suporte técnico
+            e desenvolvimento de sistemas. Autodidata desde cedo, busco construir soluções com
+            propósito e impacto real.
           </p>
+          <RouterLink to="/sobre" class="about-link mono">Ler mais →</RouterLink>
         </div>
         <div class="about-lang">
           <span class="lang-tag mono">🇺🇸 English</span>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Software Engineering student at PUC Minas with experience in technical support and
+            systems development. Self-taught from an early age, I seek to build solutions with
+            real purpose and impact.
           </p>
+          <RouterLink to="/sobre" class="about-link mono">Read more →</RouterLink>
         </div>
       </div>
     </section>
@@ -65,8 +63,8 @@
 import { RouterLink } from 'vue-router'
 
 const skills = [
-  'Java', 'Spring Boot', 'Python', 'TypeScript',
-  'Vue.js', 'Node.js', 'PostgreSQL', 'Docker', 'Git',
+  'Java', 'Spring Boot', 'Vue.js', 'React',
+  'PostgreSQL', 'PHP', 'Python', 'Docker', 'Git',
 ]
 </script>
 
@@ -149,31 +147,12 @@ const skills = [
   justify-content: center;
 }
 
-.avatar-placeholder {
+.avatar-img {
   width: 220px;
   height: 260px;
-  background: var(--placeholder);
-  border: 1px solid var(--border-light);
+  object-fit: cover;
   border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  overflow: hidden;
-}
-
-.avatar-placeholder::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--accent-dim2) 0%, transparent 60%);
-}
-
-.avatar-icon {
-  font-size: 36px;
-  position: relative;
+  border: 1px solid var(--border-light);
 }
 
 
@@ -228,6 +207,21 @@ const skills = [
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.8;
+}
+
+.about-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.about-link:hover {
+  opacity: 1;
 }
 
 .skills {

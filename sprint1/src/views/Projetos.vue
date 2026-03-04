@@ -4,7 +4,7 @@
     <div class="page-header container">
       <span class="page-badge mono">PG 02</span>
       <h1 class="page-title">Projetos</h1>
-      <p class="page-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p class="page-subtitle">Uma seleção de projetos desenvolvidos ao longo da minha trajetória.</p>
     </div>
 
     <div class="projects-layout">
@@ -32,12 +32,49 @@
             class="tl-item"
           >
             <div class="tl-year mono">{{ project.year }}</div>
-            <div class="tl-dot" :class="{ active: project.live }"></div>
-            <div class="tl-card" :class="{ featured: project.live }">
-              <div class="tl-card-img">
-                <span class="img-placeholder-text mono">🖼️ Screenshot / GIF do projeto</span>
-                <span v-if="project.live" class="status-badge mono">● Live</span>
+            <div class="tl-dot" :class="{ active: project.highlight }"></div>
+            <div class="tl-card" :class="{ featured: project.highlight }">
+
+              <!-- Galeria de imagens -->
+              <div class="tl-card-gallery">
+                <template v-if="project.images && project.images.length > 0">
+                  <div class="gallery-viewport">
+                    <img
+                      :src="project.images[activeIndex[project.id] ?? 0]"
+                      :alt="project.name + ' screenshot ' + ((activeIndex[project.id] ?? 0) + 1)"
+                      class="gallery-img"
+                    />
+
+                    <button
+                      v-if="project.images.length > 1"
+                      class="gallery-arrow left"
+                      @click.stop="prev(project)"
+                    >&#8249;</button>
+                    <button
+                      v-if="project.images.length > 1"
+                      class="gallery-arrow right"
+                      @click.stop="next(project)"
+                    >&#8250;</button>
+                  </div>
+
+                  <div v-if="project.images.length > 1" class="gallery-dots">
+                    <span
+                      v-for="(_, idx) in project.images"
+                      :key="idx"
+                      class="dot"
+                      :class="{ active: (activeIndex[project.id] ?? 0) === idx }"
+                      @click="activeIndex[project.id] = idx"
+                    ></span>
+                  </div>
+                </template>
+                <template v-else>
+                  <div class="img-placeholder">
+                    <span class="img-placeholder-text mono">🖼️ Screenshots em breve</span>
+                  </div>
+                </template>
+                <span v-if="project.highlight" class="status-badge mono">● Destaque</span>
               </div>
+
               <div class="tl-card-body">
                 <h3 class="tl-card-title">{{ project.name }}</h3>
                 <p class="tl-card-desc">{{ project.description }}</p>
@@ -48,9 +85,6 @@
                     class="tech-badge mono"
                   >{{ tech }}</span>
                 </div>
-                <a :href="project.github" target="_blank" rel="noopener" class="gh-link mono">
-                  ⎋ Ver no GitHub ↗
-                </a>
               </div>
             </div>
           </div>
@@ -66,41 +100,49 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
-const categories = ['Todos', 'Web App', 'Mobile', 'API / Back-end', 'Open Source', 'UI / Design']
+const categories = ['Todos', 'Web App', 'Mobile', 'API / Back-end', 'Estudo']
 const activeCategory = ref('Todos')
+const activeIndex = reactive({})
+
+function next(project) {
+  const cur = activeIndex[project.id] ?? 0
+  activeIndex[project.id] = (cur + 1) % project.images.length
+}
+function prev(project) {
+  const cur = activeIndex[project.id] ?? 0
+  activeIndex[project.id] = (cur - 1 + project.images.length) % project.images.length
+}
 
 const projects = [
   {
     id: 1,
-    year: '2023',
-    name: 'Projeto 01',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    techs: ['HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/',
-    category: 'Web App',
-    live: false,
+    year: '2024',
+    name: 'EasyHub',
+    description: 'Aplicativo mobile de gestão financeira pessoal criado para quem quer controle sem complexidade. O diferencial está na importação direta de extratos bancários, que elimina o cadastro manual de transações, e nos relatórios personalizados de gastos: painéis visuais que revelam padrões de consumo e ajudam a tomar decisões mais conscientes sobre o dinheiro.',
+    techs: ['Mobile', 'Node.js', 'PostgreSQL'],
+    category: 'Mobile',
+    highlight: true,
+    images: [
+      new URL('@/assets/styles/easyhub.png', import.meta.url).href,
+      new URL('@/assets/styles/easyhub2.png', import.meta.url).href,
+      new URL('@/assets/styles/easyhub3.png', import.meta.url).href,
+    ],
   },
   {
     id: 2,
-    year: '2024',
-    name: 'Projeto 02',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    techs: ['Vue.js', 'Node.js', 'PostgreSQL'],
-    github: 'https://github.com/',
-    category: 'Web App',
-    live: false,
-  },
-  {
-    id: 3,
     year: '2025',
-    name: 'Portfólio Profissional',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    techs: ['Vue.js', 'Vite', 'Vue Router', 'CSS3'],
-    github: 'https://github.com/',
+    name: 'GRINDSET',
+    description: 'Aplicativo de desenvolvimento pessoal gamificado que transforma rotina em progressão. Combine metas acadêmicas e pessoais, registre hábitos diários e acumule XP a cada conquista. O sistema de recompensas e rankings mantém a motivação alta e torna o autodesenvolvimento tão envolvente quanto um jogo.',
+    techs: ['Vue.js', 'Spring Boot', 'PostgreSQL'],
     category: 'Web App',
-    live: true,
+    highlight: false,
+    images: [
+      new URL('@/assets/styles/grindset.png', import.meta.url).href,
+      new URL('@/assets/styles/grindset2.png', import.meta.url).href,
+      new URL('@/assets/styles/grindset3.png', import.meta.url).href,
+    ],
   },
 ]
 
@@ -176,13 +218,11 @@ const filteredProjects = computed(() => {
   transition: all 0.18s;
   background: none;
 }
-
 .sidebar-item:hover {
   color: var(--text);
   background: var(--surface);
   border-color: var(--border);
 }
-
 .sidebar-item.active {
   background: var(--accent-dim);
   border-color: rgba(200, 245, 74, 0.3);
@@ -236,7 +276,6 @@ const filteredProjects = computed(() => {
   margin-top: 5px;
   transition: background 0.2s, box-shadow 0.2s;
 }
-
 .tl-dot.active {
   background: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-dim);
@@ -252,24 +291,84 @@ const filteredProjects = computed(() => {
   transition: border-color 0.2s, transform 0.2s;
   box-shadow: var(--shadow-main);
 }
-
 .tl-card:hover {
   border-color: rgba(200, 245, 74, 0.2);
   transform: translateY(-2px);
 }
-
 .tl-card.featured {
   border-color: rgba(200, 245, 74, 0.3);
 }
 
-.tl-card-img {
-  height: 110px;
-  background: var(--placeholder);
+.tl-card-gallery {
+  position: relative;
   border-bottom: 1px solid var(--border);
+}
+
+.gallery-viewport {
+  position: relative;
+  background: var(--surface-dark);
+}
+
+.gallery-img {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--border-light);
+  color: var(--text);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  transition: background 0.18s, border-color 0.18s;
+  z-index: 2;
+}
+.gallery-arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: var(--accent);
+}
+.gallery-arrow.left  { left: 10px; }
+.gallery-arrow.right { right: 10px; }
+
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 0;
+  background: var(--surface-dark);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-light);
+  cursor: pointer;
+  transition: background 0.18s, transform 0.18s;
+}
+.dot.active {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+
+.img-placeholder {
+  height: 180px;
+  background: var(--placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .img-placeholder-text {
@@ -281,9 +380,9 @@ const filteredProjects = computed(() => {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(0, 200, 80, 0.15);
-  border: 1px solid rgba(0, 200, 80, 0.4);
-  color: var(--green);
+  background: rgba(200, 245, 74, 0.12);
+  border: 1px solid rgba(200, 245, 74, 0.4);
+  color: var(--accent);
   font-size: 9px;
   padding: 3px 10px;
   border-radius: var(--radius-pill);
@@ -311,7 +410,6 @@ const filteredProjects = computed(() => {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  margin-bottom: 14px;
 }
 
 .tech-badge {
@@ -324,22 +422,6 @@ const filteredProjects = computed(() => {
   color: var(--text-muted);
   display: inline-flex;
   align-items: center;
-}
-
-.gh-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: var(--blue);
-  border: 1px solid rgba(74, 144, 245, 0.3);
-  border-radius: var(--radius-badge);
-  padding: 5px 12px;
-  background: rgba(74, 144, 245, 0.06);
-  transition: background 0.18s;
-}
-.gh-link:hover {
-  background: rgba(74, 144, 245, 0.14);
 }
 
 .empty-state {
@@ -363,9 +445,7 @@ const filteredProjects = computed(() => {
 }
 
 @media (max-width: 900px) {
-  .timeline-line {
-    left: 76px;
-  }
+  .timeline-line { left: 76px; }
 }
 
 @media (max-width: 768px) {
@@ -384,20 +464,14 @@ const filteredProjects = computed(() => {
     width: 100%;
     margin-bottom: 0;
   }
-  .timeline-line {
-    left: 80px;
-  }
+  .timeline-line { left: 80px; }
 }
 
 @media (max-width: 480px) {
   .timeline-area {
     padding: 24px 16px;
   }
-  .timeline-line {
-    left: 64px;
-  }
-  .tl-card {
-    max-width: 100%;
-  }
+  .timeline-line { left: 64px; }
+  .tl-card { max-width: 100%; }
 }
 </style>

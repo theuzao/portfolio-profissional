@@ -4,7 +4,7 @@
     <div class="page-header container">
       <span class="page-badge mono">PG 03</span>
       <h1 class="page-title">Experiências</h1>
-      <p class="page-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p class="page-subtitle">Minha trajetória profissional e acadêmica.</p>
     </div>
 
     <div class="container">
@@ -37,6 +37,9 @@
             <p class="exp-company">{{ exp.company }}</p>
             <p class="exp-period mono">{{ exp.period }}</p>
             <p class="exp-desc">{{ exp.description }}</p>
+            <div v-if="exp.techs" class="exp-techs">
+              <span v-for="tech in exp.techs" :key="tech" class="tech-tag mono">{{ tech }}</span>
+            </div>
           </div>
           <span v-if="exp.current" class="current-badge mono">● Atual</span>
         </div>
@@ -53,39 +56,33 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-const filters = ['Todos', 'Emprego', 'Estágio', 'Freelance', 'Open Source', 'Eventos']
+const filters = ['Todos', 'Emprego', 'Estágio', 'Freelance', 'Acadêmico']
 const activeFilter = ref('Todos')
 
 const experiences = [
   {
     id: 1,
-    icon: '🏢',
-    role: 'Cargo / Função',
-    company: 'Nome da Empresa',
-    period: 'Jan 2025 – Presente',
-    type: 'Estágio',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
-    current: true,
+    icon: '👁️',
+    role: 'Técnico de Informática',
+    company: 'BH Olhos - Clínica Oftalmológica',
+    period: '2023 – 2024.2',
+    type: 'Emprego',
+    description:
+      'Suporte técnico em ambiente clínico com atendimento direto a usuários e manutenção de sistemas internos. Desenvolvimento e manutenção de funcionalidades em PHP integradas ao banco de dados MySQL. Gestão de equipamentos, rede local e impressoras. Colaboração com equipe multidisciplinar para garantir a continuidade dos serviços de TI na clínica.',
+    techs: ['PHP', 'MySQL', 'Suporte TI', 'Redes'],
+    current: false,
   },
   {
     id: 2,
-    icon: '🚀',
-    role: 'Cargo / Função',
-    company: 'Nome da Empresa',
-    period: '2024 – 2025',
-    type: 'Freelance',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
-    current: false,
-  },
-  {
-    id: 3,
-    icon: '🌐',
-    role: 'Cargo / Função',
-    company: 'Nome do Projeto',
-    period: '2024',
-    type: 'Open Source',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
-    current: false,
+    icon: '🎓',
+    role: 'Engenharia de Software',
+    company: 'PUC Minas',
+    period: '2024.2 – 2028.1 (previsão)',
+    type: 'Acadêmico',
+    description:
+      'Bacharelado em Engenharia de Software com foco em análise, modelagem, projeto, construção e teste de sistemas. Grade abrange algoritmos, estruturas de dados, banco de dados, redes, segurança, arquitetura de software, gerência de projetos e desenvolvimento mobile/cloud.',
+    techs: ['Java', 'Spring Boot', 'Vue.js', 'Python', 'PostgreSQL', 'Mobile'],
+    current: true,
   },
 ]
 
@@ -240,6 +237,22 @@ const filteredExperiences = computed(() => {
   color: var(--text-secondary);
   line-height: 1.7;
   margin-top: 4px;
+}
+
+.exp-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tech-tag {
+  font-size: 10px;
+  padding: 3px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-badge);
+  color: var(--text-muted);
 }
 
 .current-badge {

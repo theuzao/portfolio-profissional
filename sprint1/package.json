@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-matheus-pereira",
+  "name": "portfolio-matheus-guilherme",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "vue": "^3.4.0",
     "vue-router": "^4.3.0"
   },
