@@ -6,7 +6,7 @@ Portfólio desenvolvido na disciplina Laboratório de Desenvolvimento de Softwar
 
 ## Status do Projeto
 
-![Sprint](https://img.shields.io/badge/Sprint-01-c8f54a?style=flat-square)
+![Sprint](https://img.shields.io/badge/Sprint-02-c8f54a?style=flat-square)
 ![Vue](https://img.shields.io/badge/Vue.js-3.4-42b883?style=flat-square&logo=vuedotjs&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-5.0-646cff?style=flat-square&logo=vite&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow?style=flat-square)
@@ -30,7 +30,7 @@ Portfólio desenvolvido na disciplina Laboratório de Desenvolvimento de Softwar
 
 ## Links Úteis
 
-- **Demo Online:** [Em breve — Vercel](#)
+- **Demo Online:** [matheusg-portfolio.vercel.app](https://matheusg-portfolio.vercel.app/)
 
 ---
 
